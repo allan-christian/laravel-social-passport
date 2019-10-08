@@ -4,7 +4,7 @@ namespace AllanChristian\SocialPassport\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class SocialPassport extends Facade
+class LaravelSocialPassport extends Facade
 {
     /**
      * Get the registered name of the component.

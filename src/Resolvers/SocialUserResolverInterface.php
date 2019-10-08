@@ -2,7 +2,6 @@
 
 namespace AllanChristian\SocialPassport\Resolvers;
 
-
 use Illuminate\Contracts\Auth\Authenticatable;
 
 interface SocialUserResolverInterface

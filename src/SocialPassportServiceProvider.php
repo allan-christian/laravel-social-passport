@@ -2,13 +2,13 @@
 
 namespace AllanChristian\SocialPassport;
 
-use AllanChristian\SocialPassport\Grants\SocialGrant;
-use AllanChristian\SocialPassport\Resolvers\SocialUserResolverInterface;
-use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Bridge\RefreshTokenRepository;
 use Laravel\Passport\Passport;
+use Illuminate\Support\ServiceProvider;
 use League\OAuth2\Server\AuthorizationServer;
+use Laravel\Passport\Bridge\RefreshTokenRepository;
+use AllanChristian\SocialPassport\Grants\SocialGrant;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use AllanChristian\SocialPassport\Resolvers\SocialUserResolverInterface;
 
 class SocialPassportServiceProvider extends ServiceProvider
 {
@@ -20,7 +20,7 @@ class SocialPassportServiceProvider extends ServiceProvider
     public function boot()
     {
         if (SocialPassport::$runsMigrations) {
-            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
 
         if (SocialPassport::$bindRoutes) {

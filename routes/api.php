@@ -20,14 +20,14 @@ Route::group([
     Route::post('login/{provider}', 'LoginController@loginProvider')->name('social-passport.login.provider');
 
     Route::group([
-        'middleware' => 'auth:api'
+        'middleware' => 'auth:api',
     ], function () {
         if (SocialPassport::$bindPasswordRoutes) {
             Route::post('logout', 'LoginController@logout')->name('social-passport.login.logout');
         }
 
         Route::group([
-            'prefix' => 'social-providers'
+            'prefix' => 'social-providers',
         ], function () {
             Route::post('/{social_provider}', 'LoginController@providerLink')
                 ->name('social-passport.providers.link');
