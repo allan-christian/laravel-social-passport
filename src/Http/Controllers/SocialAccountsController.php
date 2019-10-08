@@ -2,13 +2,13 @@
 
 namespace AllanChristian\SocialPassport\Http\Controllers;
 
-use AllanChristian\SocialPassport\Http\Resources\SocialAccountResource;
-use AllanChristian\SocialPassport\Models\SocialAccount;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use AllanChristian\SocialPassport\Models\SocialAccount;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use AllanChristian\SocialPassport\Http\Resources\SocialAccountResource;
 
 class SocialAccountsController extends Controller
 {
@@ -35,14 +35,14 @@ class SocialAccountsController extends Controller
     {
         $attributes = $request->validate([
             'provider_name' => 'required|string|filled',
-            'provider_id' => 'required|filled'
+            'provider_id' => 'required|filled',
         ]);
 
         $socialAccount = SocialAccount::create(
             array_merge(
                 Arr::only($attributes, ['provider_name', 'provider_id']),
                 [
-                    'owner_id' => auth()->id()
+                    'owner_id' => auth()->id(),
                 ]
             )
         );
@@ -72,7 +72,7 @@ class SocialAccountsController extends Controller
     {
         $attributes = $request->validate([
             'provider_name' => 'sometimes|string|filled',
-            'provider_id' => 'sometimes|filled'
+            'provider_id' => 'sometimes|filled',
         ]);
 
         $socialAccount->update(

@@ -2,15 +2,14 @@
 
 namespace AllanChristian\SocialPassport\Grants;
 
-
-use AllanChristian\SocialPassport\Resolvers\SocialUserResolverInterface;
+use League\OAuth2\Server\RequestEvent;
+use Psr\Http\Message\ServerRequestInterface;
+use League\OAuth2\Server\Grant\AbstractGrant;
 use Laravel\Passport\Bridge\User as UserEntity;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\AbstractGrant;
-use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
-use League\OAuth2\Server\RequestEvent;
 use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use AllanChristian\SocialPassport\Resolvers\SocialUserResolverInterface;
 
 class SocialGrant extends AbstractGrant
 {
@@ -20,7 +19,6 @@ class SocialGrant extends AbstractGrant
      * @var SocialUserResolverInterface
      */
     protected $resolver;
-
 
     /**
      * SocialGrant constructor.
@@ -33,8 +31,7 @@ class SocialGrant extends AbstractGrant
     public function __construct(
         SocialUserResolverInterface $resolver,
         RefreshTokenRepositoryInterface $refreshTokenRepository
-    )
-    {
+    ) {
         $this->resolver = $resolver;
         $this->setRefreshTokenRepository($refreshTokenRepository);
         $this->refreshTokenTTL = new \DateInterval('P1M');

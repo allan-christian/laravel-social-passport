@@ -2,13 +2,13 @@
 
 namespace AllanChristian\SocialPassport\Services;
 
-use AllanChristian\SocialPassport\Facades\SocialPassport;
-use AllanChristian\SocialPassport\Models\SocialAccount;
-use AllanChristian\SocialPassport\Resolvers\SocialAccountServiceInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Laravel\Socialite\Two\User as ProviderUser;
+use AllanChristian\SocialPassport\Models\SocialAccount;
 use League\OAuth2\Server\Exception\OAuthServerException;
+use AllanChristian\SocialPassport\Facades\SocialPassport;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use AllanChristian\SocialPassport\Resolvers\SocialAccountServiceInterface;
 
 class SocialAccountsService implements SocialAccountServiceInterface
 {
@@ -40,7 +40,7 @@ class SocialAccountsService implements SocialAccountServiceInterface
                 /*
                  * Security check.
                  */
-                if (!config('social-passport.autoLinkOnLogin')) {
+                if (! config('social-passport.autoLinkOnLogin')) {
                     throw new OAuthServerException(
                         'A valid login session is required to link this account.',
                         100,
@@ -52,7 +52,7 @@ class SocialAccountsService implements SocialAccountServiceInterface
                 $owner = $model->create([
                     'name' => $providerUser->getName(),
                     'username' => $providerUser->getNickname(),
-                    'email' => $providerUser->getEmail()
+                    'email' => $providerUser->getEmail(),
                 ]);
             }
 

@@ -2,26 +2,26 @@
 
 namespace AllanChristian\SocialPassport\Http\Controllers;
 
-use AllanChristian\SocialPassport\Models\SocialAccount;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Password;
 use Laravel\Socialite\Facades\Socialite;
+use AllanChristian\SocialPassport\Models\SocialAccount;
 
 class LoginController extends Controller
 {
     /**
-     * Passport Password Grant Client ID
+     * Passport Password Grant Client ID.
      *
      * @var string
      */
     protected $clientId;
 
     /**
-     * Passport Password Grant Client Secret
+     * Passport Password Grant Client Secret.
      *
      * @var string
      */
@@ -37,7 +37,7 @@ class LoginController extends Controller
         $this->clientId = config('social-passport.client.id');
         $this->clientSecret = config('social-passport.client.secret');
 
-        if (!$this->clientId || !$this->clientSecret) {
+        if (! $this->clientId || ! $this->clientSecret) {
             abort('501', 'Not Implemented');
         }
     }
@@ -53,7 +53,7 @@ class LoginController extends Controller
         $request->request->add([
             'grant_type' => 'password',
             'client_id' => $this->clientId,
-            'client_secret' => $this->clientSecret
+            'client_secret' => $this->clientSecret,
         ]);
 
         return Route::dispatch(Request::create(route('passport.token'), 'POST'));
@@ -68,7 +68,7 @@ class LoginController extends Controller
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
             'provider' => $provider,
-            'access_token' => $socialUser->token
+            'access_token' => $socialUser->token,
         ]);
 
         return Route::dispatch(Request::create(route('passport.token'), 'POST'));
@@ -84,7 +84,7 @@ class LoginController extends Controller
         $request->request->add([
             'grant_type' => 'refresh_token',
             'client_id' => $this->clientId,
-            'client_secret' => $this->clientSecret
+            'client_secret' => $this->clientSecret,
         ]);
 
         return Route::dispatch(Request::create(route('passport.token'), 'POST'));
@@ -106,7 +106,7 @@ class LoginController extends Controller
                 DB::table('oauth_refresh_tokens')
                     ->where('access_token_id', $token->id)
                     ->update([
-                        'revoked' => true
+                        'revoked' => true,
                     ]);
 
                 $token->revoke();
@@ -117,7 +117,7 @@ class LoginController extends Controller
             DB::table('oauth_refresh_tokens')
                 ->where('access_token_id', $accessToken->id)
                 ->update([
-                    'revoked' => true
+                    'revoked' => true,
                 ]);
 
             $accessToken->revoke();
@@ -185,7 +185,7 @@ class LoginController extends Controller
             ->where('provider_id', $socialUser->getId())
             ->first();
 
-        if (!$socialAccount) {
+        if (! $socialAccount) {
             $user->socialAccounts()->create([
                 'provider_id' => $socialUser->getId(),
                 'provider_name' => $provider,

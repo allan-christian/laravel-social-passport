@@ -1,15 +1,15 @@
 <?php
 
 return [
-    /**
+    /*
      * Stores Passport's Password client ID and Secret
      */
     'client' => [
         'id' => env('SOCIAL_PASSPORT_CLIENT_ID'),
-        'secret' => env('SOCIAL_PASSPORT_CLIENT_SECRET')
+        'secret' => env('SOCIAL_PASSPORT_CLIENT_SECRET'),
     ],
 
-    /**
+    /*
      * On login, if a model with the social email is found, it will be linked automatically to the social profile.
      *
      * In some cases (where the social network does not request for email validation), this can allow

@@ -81,14 +81,15 @@ class SocialPassport
     }
 
     /**
-     * Retrieve Auth API provider's model class
+     * Retrieve Auth API provider's model class.
      *
      * @return Class
      *
      * @throws \Exception
      */
-    public function getAuthProviderModel () {
-        if (is_null($model = config('auth.providers.' . config('auth.guards.api.provider') . '.model'))) {
+    public function getAuthProviderModel()
+    {
+        if (is_null($model = config('auth.providers.'.config('auth.guards.api.provider').'.model'))) {
             throw new \Exception('Unable to determine authentication model from config/auth.php configuration.');
         }
 
