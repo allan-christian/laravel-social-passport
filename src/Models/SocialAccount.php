@@ -2,16 +2,16 @@
 
 namespace AllanChristian\SocialPassport\Models;
 
-use AllanChristian\SocialPassport\Facades\SocialPassport;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use AllanChristian\SocialPassport\Facades\SocialPassport;
 
 class SocialAccount extends Model
 {
     protected $fillable = [
         'provider_name',
         'provider_id',
-        'owner_id'
+        'owner_id',
     ];
 
     /**
