@@ -45,11 +45,11 @@ MIT. Please see the [license file](license.md) for more information.
 [ico-version]: https://img.shields.io/packagist/v/allan-christian/laravel-social-passport.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/allan-christian/laravel-social-passport.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/allan-christian/laravel-social-passport/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
+[ico-styleci]: https://styleci.io/repos/213743017/shield
 
 [link-packagist]: https://packagist.org/packages/allan-christian/laravel-social-passport
 [link-downloads]: https://packagist.org/packages/allan-christian/laravel-social-passport
 [link-travis]: https://travis-ci.org/allan-christian/laravel-social-passport
-[link-styleci]: https://styleci.io/repos/12345678
+[link-styleci]: https://styleci.io/repos/213743017
 [link-author]: https://github.com/allan-christian
 [link-contributors]: ../../contributors
